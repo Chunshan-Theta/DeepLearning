@@ -38,7 +38,9 @@ def draw_digit(data):
 #prediction a pic
 def GiveAnswer(pic):
     global prediction
+    pic = np.array([pic])
     prediction_answer = sess.run(prediction,feed_dict={xs: pic, keep_prob: 1})
+
     #print("y_pre[0]\n",y_pre[0])
     print('I think this is ',list(prediction_answer[0]).index(max(prediction_answer[0])),' with',max(prediction_answer[0])*100,'% confident')
     
@@ -124,8 +126,14 @@ sess.run(tf.global_variables_initializer())
 #else:
 #    init = tf.global_variables_initializer()
 #sess.run(init)
-GiveAnswer(mnist.test.images)
-for i in range(100):
+
+
+
+GiveAnswer(mnist.test.images[3])
+print("ans:",list(mnist.test.labels[3]).index(1))
+
+
+for i in range(101):
     batch_xs, batch_ys = mnist.train.next_batch(100)
     sess.run(train_step, feed_dict={xs: batch_xs, ys: batch_ys, keep_prob: 0.5})
     if i % 20 == 0:
@@ -134,6 +142,6 @@ for i in range(100):
 	#print("ans",list(mnist.test.labels[0+i]).index(1))
 	#draw_digit(mnist.test.images[0+i])
 
-GiveAnswer(mnist.test.images)
-        
-
+GiveAnswer(mnist.test.images[3])
+print("ans:",list(mnist.test.labels[3]).index(1))        
+draw_digit(mnist.test.images[3])
