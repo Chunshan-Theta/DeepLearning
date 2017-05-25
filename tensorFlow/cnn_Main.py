@@ -1,5 +1,6 @@
 ##https://github.com/MorvanZhou/tutorials/blob/master/tensorflowTUT/tf18_CNN3/full_code.py
 ##http://darren1231.pixnet.net/blog/post/332753859-tensorflow
+##https://github.com/Chunshan-Theta/DeepLearning/blob/master/tensorFlow/cnn_Main.py
 """
 Please note, this code is only for python 3+. If you are using python 2+, please modify the code accordingly.
 """
