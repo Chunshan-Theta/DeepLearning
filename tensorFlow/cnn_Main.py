@@ -28,8 +28,8 @@ def draw_digit(data):
 
     X, Y = np.meshgrid(range(size),range(size))
     Z = data.reshape(size,size)   # convert from vector to 28x28 matrix
-    Z = Z[::-1,:]             # flip vertical
-    plt.xlim(0,27)
+    Z = Z[::-1,:]                 # flip vertical
+    plt.xlim(0,27)				  # 畫布大小
     plt.ylim(0,27)
     plt.pcolor(X, Y, Z)
     plt.gray()
