@@ -152,6 +152,8 @@ print("ans:",list(mnist.test.labels[3]).index(1))
 
 for i in range(101):
     batch_xs, batch_ys = mnist.train.next_batch(100)
+	# batch_xs = 圖像陣列
+	# batch_ys = 答案 -> [0,1,0,0,0,0,0,0,0,0]
     sess.run(train_step, feed_dict={xs: batch_xs, ys: batch_ys, keep_prob: 0.5})
     if i % 20 == 0:
 	#if you get "Killed" message , you should upgrade limit of memory
