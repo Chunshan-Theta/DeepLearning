@@ -64,6 +64,9 @@ def compute_accuracy(v_xs, v_ys):
     result = sess.run(accuracy, feed_dict={xs: v_xs, ys: v_ys, keep_prob: 1})
     return result
 
+
+
+
 def weight_variable(shape):
     initial = tf.truncated_normal(shape, stddev=0.1)#隨機變量
     return tf.Variable(initial)
@@ -129,6 +132,7 @@ b_fc2 = bias_variable([10])
 prediction = tf.nn.softmax(tf.matmul(h_fc1_drop, W_fc2) + b_fc2)
 
 
+
 # the error between prediction and real data
 cross_entropy = tf.reduce_mean(-tf.reduce_sum(ys * tf.log(prediction),reduction_indices=[1]))       # loss
 train_step = tf.train.AdamOptimizer(1e-4).minimize(cross_entropy)
@@ -150,8 +154,8 @@ GiveAnswer(mnist.test.images[3])
 print("ans:",list(mnist.test.labels[3]).index(1))
 
 
-for i in range(101):
-    batch_xs, batch_ys = mnist.train.next_batch(100)
+for i in range(200):
+    batch_xs, batch_ys = mnist.train.next_batch(50)
 	# batch_xs = 圖像陣列
 	# batch_ys = 答案 -> [0,1,0,0,0,0,0,0,0,0]
     sess.run(train_step, feed_dict={xs: batch_xs, ys: batch_ys, keep_prob: 0.5})
@@ -164,3 +168,8 @@ for i in range(101):
 GiveAnswer(mnist.test.images[3])
 print("ans:",list(mnist.test.labels[3]).index(1))        
 draw_digit(mnist.test.images[3])
+
+# save model
+saver = tf.train.Saver()
+save_path = saver.save(sess, "net/save_net.ckpt")
+print("Save to path: ", save_path)
