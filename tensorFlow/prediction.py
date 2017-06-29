@@ -84,5 +84,14 @@ with tf.Session() as sess:
     #print(sess.run(global_step_tensor))
     GiveAnswer(mnist.test.images[3])
     print("ans:",list(mnist.test.labels[3]).index(1))
+	'''
+	import cv2
+	image = cv2.imread("6.png")
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    image = cv2.resize(image,(28,28))
+    image = np.array(image).astype(float)
+    image = image.reshape(784)
+    image = image/255
+	'''
 
 
