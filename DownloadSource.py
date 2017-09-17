@@ -2,8 +2,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.datasets import fetch_mldata
-from chainer import cuda, Variable, FunctionSet, optimizers
-import chainer.functions  as F
+#from chainer import cuda, Variable, FunctionSet, optimizers
+#import chainer.functions  as F
 import sys
 
 plt.style.use('ggplot')
@@ -44,6 +44,9 @@ def draw_digit(data,i):
     plt.tick_params(labelleft="off")
     plt.savefig("./SourceImg/"+str(i))
     #plt.show()
+    plt.clf()
+    plt.cla()
+    plt.close()
 
 #draw_digit(mnist.data[5],5)
 #draw_digit(mnist.data[12345],12345)
@@ -51,6 +54,6 @@ def draw_digit(data,i):
 
 
 #np.savetxt('test.txt', mnist.data[:60000],fmt="%i", delimiter=',')
-r_base = 55000
-for idx in range(r_base,r_base+10):
+r_base = 1
+for idx in range(r_base,r_base+1000):
     draw_digit(mnist.data[idx],idx)
