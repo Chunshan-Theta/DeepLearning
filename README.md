@@ -1,3 +1,3 @@
 # DeepLearning
 
-update in WURET 2017/08/30
+update in WURET 2017/09/18
