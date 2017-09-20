@@ -37,6 +37,6 @@ def draw_digit(data,i):
     plt.close()
 
 r_base = 1
-for idx in range(r_base,r_base+70000,2): # I just want half of training set
+for idx in range(r_base,r_base+70000,5): # I just want 1/5 of training set
     draw_digit(mnist.data[idx],idx) 
     print str(idx)
