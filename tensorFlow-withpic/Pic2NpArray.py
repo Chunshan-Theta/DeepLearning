@@ -3,47 +3,44 @@ import matplotlib.pyplot as plt
 # 手書き数字データを描画する関数
 import numpy as np
 import Image
-from tensorflow.examples.tutorials.mnist import input_data
-import tensorflow as tf
 
 
  
-def draw_digit(data):
-    size = 28
+def numpy_digit_draw(data,X_size,Y_size,alert = True):    
+    
     plt.figure(figsize=(2.5, 3))
 
-    X, Y = np.meshgrid(range(size),range(size))
-    Z = data.reshape(size,size)   # convert from vector to 28x28 matrix
-    Z = Z[::-1,:]                 # flip vertical
-    plt.xlim(0,27)				  # 畫布大小
-    plt.ylim(0,27)
+    X, Y = np.meshgrid(range(X_size),range(Y_size))
+    Z = data.reshape(X_size,Y_size)   # convert from vector to 28x28 matrix
+    Z = Z[::-1,:]                     # flip vertical
+    plt.xlim(0,(X_size-1)	)		  # 畫布大小
+    plt.ylim(0,(Y_size-1))
     plt.pcolor(X, Y, Z)
     plt.gray()
     plt.tick_params(labelbottom="off",labelleft="off")
-    #plt.show()
-    
+    plt.show()
+    if alert: print len(data),data
 
-mnist = input_data.read_data_sets('MNIST_data', one_hot=True)
-Source = mnist.test.images[0]
-#print type(Source)
-#print len(Source)
-print Source
 
+def ConvertSize(pic,X_size,Y_size):
+    gray = pic.convert('L')
+    gray_rz = gray.resize((X_size,Y_size), Image.ANTIALIAS)
+    np_gray= np.array(gray_rz,float)
+    np_gray = np_gray.ravel()
+    np_gray /= 255
+    return np_gray
+
+'''
+using:
+
+#open a pic
 data = Image.open('SourceImg/11.jpg')
-gray = data.convert('L')
-gray_28_28 = gray.resize((28,28), Image.ANTIALIAS)
-np_gray= np.array(gray_28_28,float)
-np_gray = np_gray.ravel()
-np_gray /= 255
-#np_gray -= 1
-#np_gray *= -1
-#x_image = tf.reshape(data, [-1, 28, 28, 1])
-#x_image = x_image.convert('L')
-#x_image = x_image.ravel()
 
-#print type(np_gray)
-#print len(np_gray)
-print np_gray
+# Resize pic to 56x56
+NData = ConvertSize(data,56,56)
 
-draw_digit(Source) 
+# Draw pic, pic's size = 56x56
+numpy_digit_draw(NData,56,56) 
+
+'''
 
