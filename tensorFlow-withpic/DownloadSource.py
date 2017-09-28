@@ -2,7 +2,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.datasets import fetch_mldata
-import sys
+import sys 
 
 plt.style.use('ggplot')
 
@@ -30,13 +30,13 @@ def draw_digit(data,i):
     plt.gray()
     plt.tick_params(labelbottom="off")
     plt.tick_params(labelleft="off")
-    plt.savefig("./SourceImg/"+str(i)+".jpg",bbox_inches='tight')
+    plt.savefig("./TestData/"+str(i)+".jpg",bbox_inches='tight')
     #plt.show()
     plt.clf()
     plt.cla()
     plt.close()
 
-r_base = 1
+r_base = 2
 for idx in range(r_base,r_base+70000,5): # I just want 1/5 of training set
     draw_digit(mnist.data[idx],idx) 
     print str(idx)

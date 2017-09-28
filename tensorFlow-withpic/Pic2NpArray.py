@@ -22,7 +22,7 @@ def numpy_digit_draw(data,X_size,Y_size,alert = True):
     if alert: print len(data),data
 
 
-def ConvertSize(pic,X_size,Y_size):
+def ResizeAndConToNumpyArray(pic,X_size,Y_size):
     gray = pic.convert('L')
     gray_rz = gray.resize((X_size,Y_size), Image.ANTIALIAS)
     np_gray= np.array(gray_rz,float)
@@ -37,7 +37,7 @@ using:
 data = Image.open('SourceImg/11.jpg')
 
 # Resize pic to 56x56
-NData = ConvertSize(data,56,56)
+NData = ResizeAndConToNumpyArray(data,56,56)
 
 # Draw pic, pic's size = 56x56
 numpy_digit_draw(NData,56,56) 
