@@ -42,6 +42,8 @@ class PicSet:
             a_set.append(i[1])
         self.PushIndex += Num
         return q_set,a_set
+
+'''
 MP = PicSet()
 MP.add('TraingData/0/1.jpg',1)
 MP.add('TraingData/0/6.jpg',2)
@@ -53,6 +55,6 @@ a1,a2 = MP.batch(3)
 print a1[0]
 a1,a2 = MP.batch(4)
 print a1[0]
-
+'''
 
 
