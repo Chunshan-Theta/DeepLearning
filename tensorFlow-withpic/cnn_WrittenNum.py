@@ -133,10 +133,10 @@ MP = PS()
 MP.AddDir('./TraingData/')
 
 
-for i in range(404):
-    batch_xs, batch_ys = MP.batch(5)
+for i in range(101):
+    batch_xs, batch_ys = MP.batch(100)
     sess.run(train_step, feed_dict={xs: batch_xs, ys: batch_ys, keep_prob: 0.5})
-    if i % 20 == 0:
+    if i % 10 == 0:
         test_xs, test_ys = MP.batch(100)
         #print(test_xs[0],test_ys[0])
         print(str(i),",",float(compute_accuracy(test_xs,test_ys)))  
@@ -148,10 +148,22 @@ for i in range(404):
     #if i % 20 == 0:                                                        
     #   print(str(i),",",compute_accuracy(mnist.test.images,mnist.test.labels))	
 #if you get "Killed" message , you should upgrade limit of memory
-#print("ans",list(mnist.test.labels[0+i]).index(1))
-#draw_digit(mnist.test.images[0+i])
-#GiveAnswer(mnist.test.images[3])
-#print("ans:",list(mnist.test.labels[3]).index(1))
+test_xs, test_ys = MP.batch(1)
+
+GiveAnswer(test_xs[0])
+print("ans:",list(test_ys[0]).index(1))
+test_xs, test_ys = MP.batch(1)
+
+GiveAnswer(test_xs[0])
+print("ans:",list(test_ys[0]).index(1))
+test_xs, test_ys = MP.batch(1)
+
+GiveAnswer(test_xs[0])
+print("ans:",list(test_ys[0]).index(1))
+test_xs, test_ys = MP.batch(1)
+
+GiveAnswer(test_xs[0])
+print("ans:",list(test_ys[0]).index(1))
         #print(test_xs[0],test_ys[0])
         #print(str(i),",",float(compute_accuracy(test_xs,test_ys)))
 '''
