@@ -31,7 +31,9 @@ def GiveAnswer(pic):
 #compute accuracy
 def compute_accuracy(v_xs, v_ys):
     global prediction
+    #print(v_xs)
     y_pre = sess.run(prediction, feed_dict={xs: v_xs, keep_prob: 1})
+           #sess.run(train_step, feed_dict={xs: batch_xs, ys: batch_ys, keep_prob: 0.5})
 
     #show detail of computation
     #print("y_pre[0]\n",y_pre[0])
@@ -125,22 +127,19 @@ sess.run(tf.global_variables_initializer())
 #print("ans:",list(mnist.test.labels[3]).index(1))
 
 
-data = Image.open('TraingData/0/11.jpg')
-NArray = tna(data,28,28)
-MainTraingData = [NArray]
+from MKPicSet import PicSet as PS
 
-data = Image.open('TraingData/0/16.jpg')
-NArray = tna(data,28,28)
-MainTraingData.append(NArray)
+MP = PS()
+MP.AddDir('./TraingData/')
 
-data = Image.open('TraingData/0/21.jpg')
-NArray = tna(data,28,28)
-MainTraingData.append(NArray)
 
-print(MainTraingData[2])
-
-for i in range(1):
-    pass
+for i in range(404):
+    batch_xs, batch_ys = MP.batch(5)
+    sess.run(train_step, feed_dict={xs: batch_xs, ys: batch_ys, keep_prob: 0.5})
+    if i % 20 == 0:
+        test_xs, test_ys = MP.batch(100)
+        #print(test_xs[0],test_ys[0])
+        print(str(i),",",float(compute_accuracy(test_xs,test_ys)))  
     #batch_xs, batch_ys = mnist.train.next_batch(50)
     #batch_xs = 圖像陣列 numpy.ndarray[numpy.ndarray[int]]
     #batch_ys = 答案 -> [0,1,0,0,0,0,0,0,0,0]
@@ -148,10 +147,66 @@ for i in range(1):
     #sess.run(train_step, feed_dict={xs: batch_xs, ys: batch_ys, keep_prob: 0.5})
     #if i % 20 == 0:                                                        
     #   print(str(i),",",compute_accuracy(mnist.test.images,mnist.test.labels))	
-                                                                                    #if you get "Killed" message , you should upgrade limit of memory
+#if you get "Killed" message , you should upgrade limit of memory
 #print("ans",list(mnist.test.labels[0+i]).index(1))
 #draw_digit(mnist.test.images[0+i])
-
 #GiveAnswer(mnist.test.images[3])
-#print("ans:",list(mnist.test.labels[3]).index(1))   
+#print("ans:",list(mnist.test.labels[3]).index(1))
+        #print(test_xs[0],test_ys[0])
+        #print(str(i),",",float(compute_accuracy(test_xs,test_ys)))
+'''
+---------------101 , 5     =505
+0 , 0.109999999404
+20 , 0.319999992847
+40 , 0.270000010729
+60 , 0.490000009537
+80 , 0.509999990463
+100 , 0.589999973774 ***
 
+---------------101 , 10    =1010
+0 , 0.070000000298
+20 , 0.0799999982119
+40 , 0.209999993443
+60 , 0.34999999404
+80 , 0.5
+100 , 0.469999998808 ***
+
+---------------101 , 20    =2020
+0 , 0.0500000007451
+20 , 0.230000004172
+40 , 0.449999988079
+60 , 0.629999995232
+80 , 0.819999992847
+100 , 0.850000023842 ***
+
+---------------404 , 5    =2020
+0 , 0.119999997318
+20 , 0.129999995232
+40 , 0.270000010729
+60 , 0.509999990463
+80 , 0.589999973774
+100 , 0.449999988079
+120 , 0.509999990463
+140 , 0.519999980927
+160 , 0.600000023842
+180 , 0.77999997139
+200 , 0.730000019073
+220 , 0.800000011921
+240 , 0.680000007153
+260 , 0.790000021458
+280 , 0.899999976158
+300 , 0.810000002384
+320 , 0.819999992847
+340 , 0.810000002384
+360 , 0.740000009537
+380 , 0.899999976158
+400 , 0.860000014305 ***
+
+
+
+
+
+
+
+
+'''
